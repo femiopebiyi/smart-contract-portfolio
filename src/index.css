@@ -1,22 +1,85 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;1,200;1,300;1,400&display=swap');
 
-:root {
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings: "slnt" 0;
-}
+@tailwind base;
+
+
+
 
 @layer base {
   body {
     @apply bg-zinc-950 text-neutral-200;
+    font-family: Poppins;
   }
+}
+
+
+.nav{
+  width: 95%;
+  margin: 2em auto 0 auto;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my{
+  font-size: 2rem;
+  
+}
+
+.card-container{
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: space-between;
+  width: 89%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.card{
+  background-color: #131313;
+  padding: 1.5em;
+  margin-bottom: 2em;
+  border-radius: 10px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    max-width: 400px;
+    overflow: none;
+    border: none;
+  
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  background-color: #272c34;
+  opacity: 80%;
+  transform: translateY(-5px);
+}
+
+.image{
+  height: 250px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.media{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* border: 1px solid red; */
+}
+
+.deets{
+  margin-top: 1em;
+}
+.deets h1{
+  background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
 }

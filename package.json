@@ -9,8 +9,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@thirdweb-dev/react": "^4.9.4",
+    "@thirdweb-dev/sdk": "^4.0.99",
+    "@types/node": "^22.2.0",
+    "dotenv": "^16.4.5",
+    "ethers": "5",
     "react": "^18.3",
     "react-dom": "^18.3",
+    "react-router-dom": "^6.26.0",
     "thirdweb": "^5"
   },
   "devDependencies": {
@@ -26,6 +32,6 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^4"
+    "vite": "^5.1.0"
   }
 }
