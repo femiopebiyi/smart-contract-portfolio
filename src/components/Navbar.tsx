@@ -24,16 +24,8 @@ export default function NavBar() {
 			/>
 
 			<div className="connect">
-					<ConnectButton 
-						client={client}
-						appMetadata={{
-							name: "Example app",
-							url: "https://example.com",
-						}}
-						connectButton={{
-							label: "Connect Wallet"
-						}}
-						connectModal={{title: "Choose Wallet"}}
+					<ConnectWallet 
+						
 					/>
 				</div>
 		</header>

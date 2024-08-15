@@ -1,10 +1,11 @@
 import ContractCard from "../components/ContractCard"
 import { contractDetails } from "../constants/contractDetails"
 
+
 const Home = () => {
   return (
-    <div>
-    Femi is home!
+    <div className="home">
+    <h1 className="hometext">My Contracts</h1>
 
     <div className="card-container">
         {contractDetails.map((detail, index)=>{
