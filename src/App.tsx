@@ -7,9 +7,9 @@ import Home from "./pages/Home";
 import Erc_20 from "./projects/Erc20";
 import Erc_721 from "./projects/Erc721";
 import Erc_1155 from "./projects/Erc1155";
-import Staking from "./projects/staking";
-import Profile from "./projects/profile";
-import Tipjar from "./projects/tipjar";
+import Staking from "./projects/Staking";
+import Profile from "./projects/Profile";
+import Tipjar from "./projects/Tipjar";
 
 export function App() {
 	return (

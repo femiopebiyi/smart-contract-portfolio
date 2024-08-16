@@ -1,13 +1,17 @@
-import { useClaimedNFTSupply, useContract, useContractMetadata, useTotalCount, Web3Button } from "@thirdweb-dev/react"
+import { ThirdwebNftMedia, useAddress, useClaimedNFTSupply, useContract, useContractMetadata, useOwnedNFTs, useTotalCount, Web3Button } from "@thirdweb-dev/react"
 import { erc20_addresss, erc721_addresss } from "../constants/adrresses"
+import { Link } from "react-router-dom"
 
 export default function Erc_721(){
 const {contract} = useContract(erc721_addresss)
+const address = useAddress()
   const {data, isLoading,} = useContractMetadata(contract)
 
   const {data: totalSupply, isLoading: totalSupplyLoading}= useTotalCount(contract)
   
   const {data: totalClaimedSupply, isLoading: claimedSupplyLoading} = useClaimedNFTSupply(contract)
+
+  const {data: ownedNfts, isLoading: ownedNFTsIsLoading} = useOwnedNFTs(contract, address)
     return(
 
         isLoading ? (
@@ -30,24 +34,42 @@ const {contract} = useContract(erc721_addresss)
       <section className="stats">
         <div className="box">
             <h2>Claim ERC721</h2>
-            <p>claim an ERC721 nft for free!!</p>
-            <Web3Button contractAddress={erc721_addresss} action={(contract)=>contract.erc721.claim(1)} >Claim NFT</Web3Button>
+            <p>Claim an ERC721 NFT for free!!</p>
+            <Web3Button contractAddress={erc721_addresss} action={(contract)=>contract.erc721.claim(1)} className="claim-btn" isDisabled = {
+              (totalSupply?.toNumber() === totalClaimedSupply?.toNumber()) ? true:false
+            } onSuccess={()=>{alert("NFT claimed!")}}>{(totalSupply?.toNumber() === totalClaimedSupply?.toNumber()) ? "Sold Out!!" : "Claim NFT"}</Web3Button>
             
         </div>
         <div className="box">
-            <h2>contract stats</h2>
+            <h2>Contract Stats</h2>
             <p>Total Supply: <strong>{totalSupplyLoading ? "Loading...." : totalSupply?.toNumber()}</strong></p>
-            <p>Total Claimed: <strong>{claimedSupplyLoading ? "Loading...": totalClaimedSupply.toNumber()}</strong></p>
+            <p>Total Claimed: <strong>{claimedSupplyLoading ? "Loading...": totalClaimedSupply?.toNumber()}</strong></p>
             
         </div>
         <div className="box">
-            <h2>Earn Tokens</h2>
-            <p>Earn more tokens by staking ERC721 NFT</p>
-            <div className="stake-btn">
-                
-            </div>
+            <h2>Your NFTs</h2>
+            <p>Total Owned: <strong>{ownedNFTsIsLoading ? "Loading...": ownedNfts?.length}</strong></p>
         </div>
       </section>
+
+      <div className="nft-title"><h1>My NFTs:</h1></div>
+
+      <div className="mynfts">
+        {ownedNFTsIsLoading ? (<p>Loading...</p>):(
+          ownedNfts?.map((nft)=> {
+            return <div className="nft-card" key={nft.metadata.id}>
+              <div className="nft-img-con">
+            <ThirdwebNftMedia metadata={nft.metadata}/>
+              </div>
+              <h2>{nft.metadata.name}</h2>
+            <Link to= "/staking">
+            <button className="stake-nft">Stake NFT</button>
+            </Link>
+              
+            </div>
+          })
+          ) }
+      </div>
       </div>
   )
   

@@ -191,6 +191,57 @@
       font-size: 4rem;
     
 }
+
+.mynfts{
+  
+  width: 80%;
+  margin: 2em auto 1em auto;
+  display: flex;
+  gap: 20px;
+
+}
+.claim-btn{
+  margin-top: 1em !important;
+}
+
+
+
+.nft-card{
+  
+
+  width: fit-content;
+  background-color: #131313;
+}
+.nft-card h2{
+  background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    padding: 1em 0 1em 1em;
+}
+
+.nft-title{
+  width: 80%;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.stake-nft{
+  width: 100%;
+  padding: 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: white;
+    color: black;
+
+}
+
 @media screen and (max-width: 1400px) {
   .card{
     min-width: 500px;
