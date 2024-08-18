@@ -41,7 +41,7 @@ export default function Erc_20(){
             <p><strong>{connectionStatus !== "connected" ? "Please Connect Wallet" : (balanceLoading ? "Loading...." : `${tokenBalance?.displayValue} ${tokenSupply?.symbol}`)}</strong></p>
             <Web3Button contractAddress={erc20_addresss} action={(contract)=> contract.erc20.burn(10)} className="burn-btn">Burn 10 Tokens</Web3Button>
         </div>
-        <div className="box">
+        <div className="box two-btn">
             <h2>Earn Tokens</h2>
             <p>Earn more tokens by staking ERC721 NFT</p>
             <div className="stake-btn">

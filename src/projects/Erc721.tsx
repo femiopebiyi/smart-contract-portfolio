@@ -1,4 +1,4 @@
-import { ThirdwebNftMedia, useAddress, useClaimedNFTSupply, useContract, useContractMetadata, useOwnedNFTs, useTotalCount, Web3Button } from "@thirdweb-dev/react"
+import { ThirdwebNftMedia, useAddress, useClaimedNFTSupply, useConnectionStatus, useContract, useContractMetadata, useOwnedNFTs, useTotalCount, Web3Button } from "@thirdweb-dev/react"
 import { erc20_addresss, erc721_addresss } from "../constants/adrresses"
 import { Link } from "react-router-dom"
 
@@ -10,6 +10,7 @@ const address = useAddress()
   const {data: totalSupply, isLoading: totalSupplyLoading}= useTotalCount(contract)
   
   const {data: totalClaimedSupply, isLoading: claimedSupplyLoading} = useClaimedNFTSupply(contract)
+  const connectionStatus = useConnectionStatus();
 
   const {data: ownedNfts, isLoading: ownedNFTsIsLoading} = useOwnedNFTs(contract, address)
     return(
@@ -48,13 +49,13 @@ const address = useAddress()
         </div>
         <div className="box">
             <h2>Your NFTs</h2>
-            <p>Total Owned: <strong>{ownedNFTsIsLoading ? "Loading...": ownedNfts?.length}</strong></p>
+            <p>Total Owned: <strong>{connectionStatus !== "connected" ? "Connect Wallet to View" : ownedNFTsIsLoading ? "Loading...": ownedNfts?.length}</strong></p>
         </div>
       </section>
 
-      <div className="nft-title"><h1>My NFTs:</h1></div>
+      {connectionStatus === "connected" && <div className="nft-title"><h1>My NFTs:</h1></div>}
 
-      <div className="mynfts">
+      {connectionStatus === "connected" && <div className="mynfts">
         {ownedNFTsIsLoading ? (<p>Loading...</p>):(
           ownedNfts?.map((nft)=> {
             return <div className="nft-card" key={nft.metadata.id}>
@@ -69,7 +70,7 @@ const address = useAddress()
             </div>
           })
           ) }
-      </div>
+      </div>}
       </div>
   )
   
