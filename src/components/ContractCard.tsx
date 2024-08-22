@@ -15,7 +15,7 @@ type ContractCardType = {
 const ContractCard = (props: ContractCardType) => {
   const {address,description,title, href} = props
   const {contract} = useContract(address)
-  const {data, isLoading,} = useContractMetadata(contract)
+  const {data, isLoading} = useContractMetadata(contract)
 
   
   return (

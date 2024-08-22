@@ -147,7 +147,7 @@
 }
 
 .box{
-  height: 200px;
+  height: 250px;
   width: 30%;
   /* border: 1px solid red; */
   padding-left: 2em;
@@ -283,6 +283,22 @@
     }
     .withdraw p {
       margin-top: 1.2em;
+    }
+
+    .stake-div, .staked-div{
+      height: auto;
+      /* border: 1px solid red; */
+      padding: 0 1em;
+    }
+
+    .staked{
+      /* border: 1px solid white; */
+      width: 100% !important;
+      border-bottom: 1px solid white;
+      padding-bottom: 1em;
+    }
+    .staked button{
+      width: 100%;
     }
 
 @media screen and (max-width: 1400px) {
