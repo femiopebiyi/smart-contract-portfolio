@@ -12,9 +12,9 @@ const Staking = () => {
     const {contract} = useContract(erc_staking_addresss)
   const {data, isLoading,} = useContractMetadata(contract)
   const {contract: erc20addy} = useContract(erc20_addresss)
-  const [claimableRewards, setClaimableRewards] = useState<BigNumber>()
+  const [claimableRewards, setClaimableRewards] = useState<BigNumber | null>(null)
   const {contract: erc721con} = useContract(erc721_addresss)
- 
+
   const address = useAddress()
   const {data: tokenBalance, isLoading: balanceLoading} = useTokenBalance(erc20addy, address)
   const {data: nftsOwned, isLoading: loadingnftsowned} = useOwnedNFTs(erc721con, address)
@@ -32,6 +32,8 @@ const Staking = () => {
     getClaimableRewards()
   }, [address, contract, claimableRewards])
   
+
+
   return (
     isLoading ? (
     <div className="loading">
@@ -50,11 +52,15 @@ const Staking = () => {
         </div>
       </main>
 
-      <section className="stats">
-        <div className="box">
+      <section className="stats ">
+        <div className="box claim-div">
             <h2>Token Stats</h2>
-            <p><strong>{balanceLoading ? "Loading" : `${tokenBalance?.displayValue} ${tokenBalance?.symbol}`}</strong></p>
-            <p>Reward: <strong>{parseFloat(ethers.utils.formatEther(claimableRewards!)).toFixed(4)}</strong></p>
+            <p><strong>{balanceLoading ? "Loading" : `${parseFloat(tokenBalance?.displayValue ?? "0.0000").toFixed(4)} ${tokenBalance?.symbol}`}</strong></p>
+            <p>Reward: <strong>
+              {claimableRewards
+                ? parseFloat(ethers.utils.formatEther(claimableRewards)).toFixed(4)
+                : "0.0000"}
+            </strong></p>
             <Web3Button contractAddress={erc_staking_addresss} action={(contract) => contract.call("claimRewards")}
               onSuccess={()=>{
                 alert("reward claimed")
@@ -81,11 +87,10 @@ const Staking = () => {
             
         </div>
         <div className="box staked-div">
-            <h2>Earn Tokens</h2>
-            <p>Earn more tokens by staking ERC721 NFT</p>
+            <h2>Staked NFTs</h2>
             <div className="stake-btn">
                 {stakeTokensLoading ? (<p>Loading...</p>):(
-                  stakedTokens && stakedTokens.length > 0 ? (
+                  (stakedTokens && stakedTokens[0]?.length > 0) ? (
                     stakedTokens[0].map((stakedToken: BigNumber, index: number)=>{
                       return <div key={index} className="staked">
                         <StakedNFTCard tokenId={stakedToken.toNumber()}/>

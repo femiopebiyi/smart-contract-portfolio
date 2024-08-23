@@ -285,11 +285,18 @@
       margin-top: 1.2em;
     }
 
-    .stake-div, .staked-div{
+    .stake-div{
       height: auto;
       /* border: 1px solid red; */
-      padding: 0 1em;
+      padding: 0 0em;
     }
+
+        .staked-div{
+          height: fit-content;
+          padding: 0 0 1em 0;
+        }
+
+    
 
     .staked{
       /* border: 1px solid white; */

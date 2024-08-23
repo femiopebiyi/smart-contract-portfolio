@@ -19,7 +19,7 @@ const address = useAddress()
     return (
         <div>
             
-        <ThirdwebNftMedia metadata={nftMetadata?.metadata!}/>
+        <MediaRenderer src={nftMetadata?.metadata.image}/>
             <div>
                 <p>{nftMetadata?.metadata.name}</p>
                 <p>TokenId: {nftMetadata?.metadata.id}</p>
